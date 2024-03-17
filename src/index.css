@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input {
+  @apply bg-gray-100 rounded-lg px-4 py-2 my-2;
+}
+
+.btn {
+  @apply bg-yellow-400 rounded-lg px-6 py-3 mt-4 cursor-pointer;
+}

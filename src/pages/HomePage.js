@@ -1,11 +1,17 @@
+import { getAuth, signOut } from "firebase/auth"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import img1 from "../assets/BAGR.png"
 import eduZen from "../assets/Eduzen1.png"
 import BasicDetails from "../components/BasicDetails"
 import VideoPlayer from "../components/VideoPlayer"
+import { useAuth } from "../Firebase"
 
 function HomePage({ videoUrls, setVideoUrls, formData, setFormData }) {
   const [loading, setLoading] = useState(false)
+  const auth = getAuth()
+  let navigate = useNavigate()
+  const currentUser = useAuth()
 
   // const fun1 = async () => {
   //   var data1 = []
@@ -22,6 +28,20 @@ function HomePage({ videoUrls, setVideoUrls, formData, setFormData }) {
   //   fun1()
   // }, [])
 
+  const signout = () => {
+    console.log("Signout")
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigate("/")
+        console.log(currentUser)
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error)
+      })
+  }
+
   return (
     <div className="relative w-screen">
       <div>
@@ -29,6 +49,9 @@ function HomePage({ videoUrls, setVideoUrls, formData, setFormData }) {
       </div>
       <div className="absolute left-[2%] top-[2%]">
         <img className="w-[30%] sm:w-[10%]" src={eduZen} alt="LOGO" />
+      </div>
+      <div className="absolute right-[2%] top-[2%] text-white cursor-pointer" onClick={signout}>
+        Logout
       </div>
       <div className="absolute top-1/2 -translate-y-1/2 transform w-full">
         <div className="mx-auto sm:mx-[10%] w-[300px] sm:w-[450px] min-w-[300px] bg-white py-4 sm:pt-4 rounded-[25px]">
