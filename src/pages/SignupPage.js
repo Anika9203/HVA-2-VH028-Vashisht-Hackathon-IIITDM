@@ -28,18 +28,18 @@ function Signup() {
   }
 
   return (
-    <div className="flex h-screen">
-      <div className="w-2/3 bg-black text-white p-8">
+    <div className="flex h-screen flex-col sm:flex-row">
+      <div className="sm:w-2/3 bg-black text-white p-8">
         <div className="flex flex-col h-full justify-center text-center">
           <div className="flex items-center">
-            <div className="ml-40">
+            <div className="mx-auto sm:ml-40">
               <h1 className="text-4xl font-bold">Welcome to</h1>
               <h1 className="text-6xl text-[orange]">Eduzen</h1>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-1/3 bg-white flex items-center justify-center">
+      <div className="sm:w-1/3 bg-white flex items-center justify-center">
         <div className="w-4/5 flex justify-center flex-col items-center">
           <div className="flex flex-col items-center">
             {/* <img src={Logo} alt="Logo" className="w-24 h-24" /> */}

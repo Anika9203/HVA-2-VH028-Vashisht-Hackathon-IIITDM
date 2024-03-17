@@ -1,15 +1,16 @@
 // App.js
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
-import { Route, Routes } from "react-router-dom"
-import HomePage from "./pages/HomePage"
-import VideoPlayPage from "./pages/VideoPlayerPage"
-import Signup from "./pages/SignupPage"
-import Login from "./pages/LoginPage"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import { useAuth } from "./Firebase"
+import HomePage from "./pages/HomePage"
+import Login from "./pages/LoginPage"
+import Signup from "./pages/SignupPage"
+import VideoPlayPage from "./pages/VideoPlayerPage"
 
 function App() {
   const currentUser = useAuth()
+  const navigate = useNavigate()
 
   const [videoUrls, setVideoUrls] = useState()
   const [formData, setFormData] = useState({
@@ -19,6 +20,10 @@ function App() {
     topicInterested: "",
     projectOrCourseBased: "",
   })
+
+  useEffect(() => {
+    if (currentUser) navigate("/")
+  }, [currentUser])
 
   return (
     <div>
